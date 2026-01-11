@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | Lottery Hub Pro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/password_strength.js') }}" defer></script>
+</head>
+<body class="register-page">
+
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<div class="auth-wrapper">
+    <div class="login-container">
+
+
+  
+        <div class="login-left image-only"></div>
+
+
+        <div class="login-right">
+            <div class="login-card">
+
+                <h2>Register</h2>
+                <p class="subtitle compact">Manage all your lottery efficiently</p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+                {% endwith %}
+
+                <form method="POST" class="two-col-form">
+
+                    <div class="form-row">
+                        <div>
+                            <label>First Name</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label>Phone</label>
+                            <input type="text" name="phone" required>
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label>Password</label>
+                            <input type="password" name="password"
+                                oninput="checkStrength(this.value)" required>
+                        </div>
+                        <div>
+                            <label>Confirm Password</label>
+                            <input type="password" name="confirm_password" required>
+                        </div>
+                    </div>
+
+               
+                    <div class="strength">
+                        <div id="strength-bar"></div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span>Yes, I want to receive Lottery Display emails</span>
+                        </label>
+
+                        <label class="checkbox">
+                            <input type="checkbox" required>
+                            <span>
+                                I agree to all the
+                                <a href="#" class="link">Terms</a>,
+                                <a href="#" class="link">Privacy Policy</a>
+                                and
+                                <a href="#" class="link">Fees</a>
+                            </span>
+                        </label>
+                    </div>
+
+                    <button type="submit">Create Account</button>
+
+                    <p class="signup">
+                        Already have an account?
+                        <a href="{{ url_for('login') }}">Log in</a>
+                    </p>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

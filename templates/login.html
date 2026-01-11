@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Lottery Hub Pro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+</head>
+<body class="login-page">
+
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<div class="auth-wrapper">
+    <div class="login-container">
+
+
+ 
+        <div class="login-left image-only"></div>
+
+ 
+        <div class="login-right">
+            <div class="login-card">
+
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Sign in to your account</p>
+
+                 {% with messages = get_flashed_messages(with_categories=true) %}
+                 {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+                {% endwith %}
+
+                <form method="POST">
+
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+
+                    <div class="options">
+                        <label class="remember">
+                            <input type="checkbox">
+                            <span>Remember me</span>
+                        </label>
+
+                        <a href="#" class="reset">Forgot password?</a>
+                    </div>
+
+                    <button type="submit">Sign In</button>
+
+                    <p class="signup">
+                        Don’t have an account?
+                        <a href="{{ url_for('register') }}">Create one</a>
+                    </p>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
